@@ -1,4 +1,6 @@
 services:
+
+
   nginx:
     image: nginx:1.15.12-alpine
     restart: unless-stopped
@@ -14,7 +16,7 @@ services:
     image: mysql:5.7.28
     restart: unless-stopped
     ports:
-      - "3308:3306"  # Change MySQL port mapping here
+      - "3308:3306"
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'

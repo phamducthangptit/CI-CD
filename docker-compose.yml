@@ -28,6 +28,21 @@ services:
     networks:
       - wordpress-network
 
+  phpadmin:
+    depends_on: 
+      - 'database'
+    image: phpmyadmin/phpmyadmin:4.7
+    container_name: phpadmin
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306  
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+    networks:
+      - wordpress-network
+
   wordpress:
     depends_on:
       - database
